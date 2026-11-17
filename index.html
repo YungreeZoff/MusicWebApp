@@ -7,7 +7,6 @@
     <title>Музыкальный путь</title>
 </head>
 <body>
-    <!-- Фоновые декоративные круги -->
     <div class="bg-circle bg-circle-1"></div>
     <div class="bg-circle bg-circle-2"></div>
 
@@ -18,7 +17,7 @@
         </header>
 
         <main class="grid" id="song-grid">
-            <!-- Карточка 1 -->
+            <!-- Карточки остаются как были -->
             <div class="card" data-id="1">
                 <div class="card-icon">🎸</div>
                 <div class="card-content">
@@ -26,43 +25,44 @@
                     <p class="card-desc">Виктор Цой • Гитара</p>
                 </div>
             </div>
-
-            <!-- Карточка 2 -->
-            <div class="card" data-id="2">
-                <div class="card-icon">🎸</div>
-                <div class="card-content">
-                    <h2 class="card-title">Пачка сигарет</h2>
-                    <p class="card-desc">Виктор Цой • Гитара</p>
-                </div>
-            </div>
-
-            <!-- Карточка 3 -->
-            <div class="card" data-id="3">
-                <div class="card-icon">🎹</div>
-                <div class="card-content">
-                    <h2 class="card-title">Миллион алых роз</h2>
-                    <p class="card-desc">Раймонд Паулс • Пианино</p>
-                </div>
-            </div>
-
-            <!-- Карточка 4 -->
-            <div class="card" data-id="4">
-                <div class="card-icon">🪕</div>
-                <div class="card-content">
-                    <h2 class="card-title">Shape of You</h2>
-                    <p class="card-desc">Ed Sheeran • Укулеле</p>
-                </div>
-            </div>
-
-            <!-- Карточка 5 -->
-            <div class="card" data-id="5">
-                <div class="card-icon">🎸</div>
-                <div class="card-content">
-                    <h2 class="card-title">Nothing Else Matters</h2>
-                    <p class="card-desc">Metallica • Гитара</p>
-                </div>
-            </div>
+            <!-- ... остальные карточки ... -->
         </main>
+    </div>
+
+    <!-- ===== МОДАЛЬНОЕ ОКНО С ДЕТАЛЯМИ ПЕСНИ ===== -->
+    <div class="sheet-overlay" id="sheet-overlay"></div>
+    <div class="sheet" id="song-sheet">
+        <div class="sheet-handle"></div>
+        <button class="sheet-close" id="sheet-close">✕</button>
+
+        <div class="sheet-header">
+            <div class="sheet-icon" id="sheet-icon">🎸</div>
+            <div>
+                <h2 class="sheet-title" id="sheet-title">Название</h2>
+                <p class="sheet-artist" id="sheet-artist">Исполнитель</p>
+            </div>
+        </div>
+
+        <div class="sheet-info-grid">
+            <div class="info-block">
+                <span class="info-label">🎸 Инструмент</span>
+                <span class="info-value" id="sheet-instrument">—</span>
+            </div>
+            <div class="info-block">
+                <span class="info-label">⏱ Срок</span>
+                <span class="info-value" id="sheet-days">—</span>
+            </div>
+        </div>
+
+        <div class="info-block info-block--full">
+            <span class="info-label">🎼 Ноты и аккорды</span>
+            <span class="info-value" id="sheet-notes">—</span>
+        </div>
+
+        <div class="info-block info-block--full">
+            <span class="info-label">📚 План обучения</span>
+            <ol class="plan-list" id="sheet-plan"></ol>
+        </div>
     </div>
 
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
