@@ -6,7 +6,6 @@ tg.MainButton.color = "#2cab37";
 
 let selectedSongId = null;
 
-// ===== ДАННЫЕ О ПЕСНЯХ (синхронизированы с mus.sql) =====
 const SONGS = {
     "1": {
         title: "Кукушка",
@@ -85,7 +84,6 @@ const SONGS = {
     }
 };
 
-// ===== ЭЛЕМЕНТЫ DOM =====
 const cards = document.querySelectorAll('.card');
 const overlay = document.getElementById('sheet-overlay');
 const sheet = document.getElementById('song-sheet');
@@ -99,7 +97,6 @@ const sheetDays = document.getElementById('sheet-days');
 const sheetNotes = document.getElementById('sheet-notes');
 const sheetPlan = document.getElementById('sheet-plan');
 
-// ===== ОТКРЫТИЕ / ЗАКРЫТИЕ SHEET =====
 function openSheet(songId) {
     const song = SONGS[songId];
     if (!song) return;
@@ -108,11 +105,11 @@ function openSheet(songId) {
     sheetTitle.textContent = song.title;
     sheetArtist.textContent = song.artist;
     sheetInstrument.textContent = song.instrument;
-    sheetDays.textContent = `${song.days} дней`;
+    sheetDays.textContent = song.days + " дней";
     sheetNotes.textContent = song.notes;
 
     sheetPlan.innerHTML = "";
-    song.plan.forEach(step => {
+    song.plan.forEach(function (step) {
         const li = document.createElement('li');
         li.textContent = step;
         sheetPlan.appendChild(li);
@@ -120,7 +117,7 @@ function openSheet(songId) {
 
     overlay.classList.add('visible');
     sheet.classList.add('visible');
-    tg.HapticFeedback?.impactOccurred('light');
+    if (tg.HapticFeedback) tg.HapticFeedback.impactOccurred('light');
 }
 
 function closeSheet() {
@@ -131,14 +128,12 @@ function closeSheet() {
 overlay.addEventListener('click', closeSheet);
 sheetClose.addEventListener('click', closeSheet);
 
-// ===== КЛИК ПО КАРТОЧКЕ =====
-cards.forEach(card => {
-    card.addEventListener('click', () => {
+cards.forEach(function (card) {
+    card.addEventListener('click', function () {
         const songId = card.getAttribute('data-id');
         const song = SONGS[songId];
         if (!song) return;
 
-        // Повторный клик по той же карточке — отмена выбора
         if (selectedSongId === songId) {
             card.classList.remove('selected');
             tg.MainButton.hide();
@@ -147,27 +142,21 @@ cards.forEach(card => {
             return;
         }
 
-        // Снимаем выделение со всех
-        cards.forEach(c => c.classList.remove('selected'));
+        cards.forEach(function (c) { c.classList.remove('selected'); });
         card.classList.add('selected');
         selectedSongId = songId;
 
-        // Показываем sheet с информацией
         openSheet(songId);
 
-        // Настраиваем и показываем MainButton
-        tg.MainButton.setText(`Получить путь для «${song.title}»`);
+        tg.MainButton.setText('Получить путь для «' + song.title + '»');
         tg.MainButton.show();
 
-        tg.HapticFeedback?.impactOccurred('medium');
+        if (tg.HapticFeedback) tg.HapticFeedback.impactOccurred('medium');
     });
 });
 
-// ===== ОТПРАВКА ДАННЫХ БОТУ =====
 Telegram.WebApp.onEvent("mainButtonClicked", function () {
     if (selectedSongId) {
         tg.sendData(selectedSongId);
-        // Опционально: закрыть Web App после отправки
-        // tg.close();
     }
 });
