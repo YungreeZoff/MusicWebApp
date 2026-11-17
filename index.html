@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="style.css">
+    <title>Музыкальный путь</title>
+</head>
+<body>
+    <!-- Фоновые декоративные круги -->
+    <div class="bg-circle bg-circle-1"></div>
+    <div class="bg-circle bg-circle-2"></div>
+
+    <div class="container">
+        <header class="header">
+            <h1>🎧 Музыкальный путь</h1>
+            <p class="subtitle">Выбери песню, и я подберу инструмент, ноты и план обучения</p>
+        </header>
+
+        <main class="grid" id="song-grid">
+            <!-- Карточка 1 -->
+            <div class="card" data-id="1">
+                <div class="card-icon">🎸</div>
+                <div class="card-content">
+                    <h2 class="card-title">Кукушка</h2>
+                    <p class="card-desc">Виктор Цой • Гитара</p>
+                </div>
+            </div>
+
+            <!-- Карточка 2 -->
+            <div class="card" data-id="2">
+                <div class="card-icon">🎸</div>
+                <div class="card-content">
+                    <h2 class="card-title">Пачка сигарет</h2>
+                    <p class="card-desc">Виктор Цой • Гитара</p>
+                </div>
+            </div>
+
+            <!-- Карточка 3 -->
+            <div class="card" data-id="3">
+                <div class="card-icon">🎹</div>
+                <div class="card-content">
+                    <h2 class="card-title">Миллион алых роз</h2>
+                    <p class="card-desc">Раймонд Паулс • Пианино</p>
+                </div>
+            </div>
+
+            <!-- Карточка 4 -->
+            <div class="card" data-id="4">
+                <div class="card-icon">🪕</div>
+                <div class="card-content">
+                    <h2 class="card-title">Shape of You</h2>
+                    <p class="card-desc">Ed Sheeran • Укулеле</p>
+                </div>
+            </div>
+
+            <!-- Карточка 5 -->
+            <div class="card" data-id="5">
+                <div class="card-icon">🎸</div>
+                <div class="card-content">
+                    <h2 class="card-title">Nothing Else Matters</h2>
+                    <p class="card-desc">Metallica • Гитара</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
